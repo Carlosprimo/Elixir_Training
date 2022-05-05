@@ -28,10 +28,9 @@ defmodule Cards do
     end
 
     def load(filename) do
-      {status, deck} = File.read(filename)
-      case status do
-        :ok -> deck
-        :error -> "That file does not exist"
+      case File.read(filename) do
+        {:ok, deck} -> deck
+        {:error, _reason} -> "That file does not exist"
       end
     end
 end
