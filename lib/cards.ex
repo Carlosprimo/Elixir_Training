@@ -1,5 +1,8 @@
 defmodule Cards do
     def create_deck do
-      this.myDeck = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
+      ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
+    end
+    def shuffle_deck(deck) do
+      Enum.shuffle(deck)
     end
 end
