@@ -22,6 +22,16 @@ defmodule Cards do
     end
 
     def save(deck,filename) do
-      File.write(filename, deck)
+      {:ok, file} = File.open(filename, [:write])
+      IO.binwrite(file, deck)
+      File.close(file)
+    end
+
+    def load(filename) do
+      {status, deck} = File.read(filename)
+      case status do
+        :ok -> deck
+        :error -> "That file does not exist"
+      end
     end
 end
