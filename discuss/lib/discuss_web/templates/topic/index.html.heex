@@ -6,14 +6,18 @@
     <%= for topic <- @topics do %>
         <li class="collection-item">
             <%= topic.title %>
-            <div class = "right">
-            <%= link to: Routes.topic_path(@conn,:edit,topic) do %>
-                <i class="material-icons">edit</i>
+            <%= if user = @conn.assigns[:user] do %>
+                <%= if user.id == topic.user_id  do %>
+                    <div class = "right">
+                        <%= link to: Routes.topic_path(@conn,:edit,topic) do %>
+                            <i class="material-icons">edit</i>
+                        <% end %>
+                        <%= link to: Routes.topic_path(@conn,:delete,topic),method: :delete do %>
+                            <i class="material-icons">delete</i>
+                        <% end %>
+                    </div>
+                <% end %>
             <% end %>
-            <%= link to: Routes.topic_path(@conn,:delete,topic),method: :delete do %>
-                <i class="material-icons">delete</i>
-            <% end %>
-            </div>
         </li>
     <% end %>
 </ul>
