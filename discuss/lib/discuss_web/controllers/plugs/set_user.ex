@@ -6,7 +6,6 @@ defmodule DiscussWeb.Plugs.SetUser do
   alias Discuss.User
 
   def init(_params) do
-
   end
 
   def call(conn, _params) do
@@ -15,6 +14,7 @@ defmodule DiscussWeb.Plugs.SetUser do
     cond do
       user = user_id && Repo.get_by(User, id: user_id) ->
         assign(conn, :user, user)
+
       true ->
         assign(conn, :user, nil)
     end

@@ -9,13 +9,13 @@ defmodule DiscussWeb.AuthController do
     user_params = %{token: auth.credentials.token, email: auth.info.email, provides: "github"}
     changeset = User.changeset(%User{}, user_params)
 
-    signin(conn,changeset)
+    signin(conn, changeset)
   end
 
   def signout(conn, changeset) do
     conn
     |> configure_session(drop: true)
-    |> redirect(to: Routes.topic_path(conn,:index))
+    |> redirect(to: Routes.topic_path(conn, :index))
   end
 
   defp signin(conn, changeset) do
@@ -25,10 +25,11 @@ defmodule DiscussWeb.AuthController do
         |> put_flash(:info, "Welcome back")
         |> put_session(:user_id, user.id)
         |> redirect(to: Routes.topic_path(conn, :index))
+
       {:error, _reason} ->
         conn
         |> put_flash(:error, "Error signing in")
-        |> redirect(to: Routes.topic_path(conn,:index))
+        |> redirect(to: Routes.topic_path(conn, :index))
     end
   end
 
@@ -36,6 +37,7 @@ defmodule DiscussWeb.AuthController do
     case Repo.get_by(User, email: changeset.changes.email) do
       nil ->
         Repo.insert(changeset)
+
       user ->
         {:ok, user}
     end

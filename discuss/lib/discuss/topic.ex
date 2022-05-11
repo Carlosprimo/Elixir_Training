@@ -7,10 +7,9 @@ defmodule Discuss.Topic do
     belongs_to :user, Discuss.User
   end
 
-  def changeset(struct,params \\%{}) do
+  def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:title])
     |> validate_required([:title])
   end
-
 end

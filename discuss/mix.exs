@@ -33,6 +33,7 @@ defmodule Discuss.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:env, "~> 0.2.0"},
       {:ueberauth_github, "~> 0.7"},
       {:phoenix, "~> 1.6.8"},
       {:phoenix_ecto, "~> 4.4"},
